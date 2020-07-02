@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Você tem certeza que deseja remover o torcedor: {{ torcedor.nome }}?</h2>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+        <a class="btn btn-light" href="{% url 'list_torcedor' %}">Cancelar</a>
+    </form>
+{% endblock %}

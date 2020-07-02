@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="POST" novalidate>
+  {% csrf_token %}
+  <div class="form-group">
+    {{ form.cpf |as_crispy_field }}
+  </div>
+  <div class="form-group">
+    {{ form.nome |as_crispy_field }}
+  </div>
+  <div class="form-group">
+    {{ form.idade |as_crispy_field }}
+  </div>
+  <button type="submit" class="btn btn-success">Salvar</button>
+  {% if torcedor %}
+  <a href="{% url 'delete_torcedor' torcedor.id %}" class="btn btn-danger">Excluir</a>
+  {% endif %}
+  <a class="btn btn-light" href="{% url 'list_torcedor' %}">Cancelar</a>
+</form>
+{% endblock %}

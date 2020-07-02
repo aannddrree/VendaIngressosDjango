@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>Ingressos</h2>
+<table class="table table-striped">
+    <thead>
+    <tr bgcolor=a0a0a0>
+        <th scope="col">Preço</th>
+        <th scope="col">Setor</th>
+        <th scope="col">Clube A</th>
+        <th scope="col">Clube B</th>
+        <th scope="col">Estádio</th>
+        <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ingresso in ingressos %}
+    <tr>
+        <td><a href="{% url 'update_ingresso' ingresso.id %}">R${{ ingresso.preco }}</a></td>
+        <td>{{ ingresso.setor }}</td>
+        <td>{{ ingresso.clubeA }}</td>
+        <td>{{ ingresso.clubeB }}</td>
+        <td>{{ ingresso.estadio }}</td>
+        <td>{{ ingresso.status }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if not ingressos %}
+<div class="alert alert-info" role="alert">
+    Não há ingressos cadastrados!
+</div>
+{% endif %}
+<a class="btn btn-secondary" href="{% url 'menu' %}">Voltar</a>
+<a class="btn btn-primary" href="{% url 'create_ingresso' %}">Novo</a>
+{% endblock %}

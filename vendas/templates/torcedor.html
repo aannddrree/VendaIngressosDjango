@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>Torcedores</h2>
+<table class="table table-striped">
+    <thead>
+    <tr bgcolor=a0a0a0>
+        <th scope="col">CPF</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Idade</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for torcedor in torcedores %}
+    <tr>
+        <td><a href="{% url 'update_torcedor' torcedor.id %}">{{ torcedor.cpf }}</a></td>
+        <td>{{ torcedor.nome }}</td>
+        <td>{{ torcedor.idade }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if not torcedores %}
+<div class="alert alert-info" role="alert">
+    Não há torcedores cadastrados!
+</div>
+{% endif %}
+<a class="btn btn-secondary" href="{% url 'menu' %}">Voltar</a>
+<a class="btn btn-primary" href="{% url 'create_torcedor' %}">Novo</a>
+{% endblock %}

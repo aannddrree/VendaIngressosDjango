@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<a href="{% url 'list_torcedor' %}">
+    <div class="card" style="padding:2%">
+        <div class="card-body">
+            <h5 class="card-title">Torcedor</h5>
+            <p class="card-text">Consulte todos os torcedores cadastrados</p>
+        </div>
+    </div>
+</a>
+<br>
+<a href="{% url 'list_ingresso' %}">
+    <div class="card" style="padding:2%">
+        <div class="card-body text-success">
+            <h5 class="card-title">Ingresso</h5>
+            <p class="card-text">Consulte todos os ingressos cadastrados</p>
+        </div>
+    </div>
+</a>
+<br>
+<a href="{% url 'list_compra' %}">
+    <div class="card" style="padding:2%">
+        <div class="card-body text-warning">
+            <h5 class="card-title">Compra</h5>
+            <p class="card-text">Consulte todos os ingressos vendidos</p>
+        </div>
+    </div>
+</a>
+{% endblock %}

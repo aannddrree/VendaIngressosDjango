@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if not torcedores %}
+<div class="alert alert-warning" role="alert">
+  Cadastre no mínimo 1 torcedor para efetuar uma compra!
+</div>
+{% endif %}
+{% if not ingressos %}
+<div class="alert alert-warning" role="alert">
+  Cadastre no mínimo 1 ingresso para efetuar uma compra!
+</div>
+{% endif %}
+<h2>Compras</h2>
+<table class="table table-striped">
+    <thead>
+    <tr bgcolor=a0a0a0>
+        <th scope="col">CPF</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Idade</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Setor</th>
+        <th scope="col">Time A</th>
+        <th scope="col">Time B</th>
+        <th scope="col">Estádio</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for compra in compras %}
+    <tr>
+        <td>{{ compra.torcedor.cpf }}</td>
+        <td>{{ compra.torcedor.nome }}</td>
+        <td>{{ compra.torcedor.idade }}</td>
+        <td>R${{ compra.ingresso.preco }}</td>
+        <td>{{ compra.ingresso.setor }}</td>
+        <td>{{ compra.ingresso.clubeA }}</td>
+        <td>{{ compra.ingresso.clubeB }}</td>
+        <td>{{ compra.ingresso.estadio }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if not compras %}
+<div class="alert alert-info" role="alert">
+    Não há compras efetuadas!
+</div>
+{% endif %}
+<a class="btn btn-secondary" href="{% url 'menu' %}">Voltar</a>
+{% if torcedores and ingressos %}
+<a class="btn btn-primary" href="{% url 'create_compra' %}">Comprar</a>
+{% endif %}
+
+{% endblock %}
